@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const bookSchema = mongoose.Schema({
-    bookId: { type: String, required: true },
+    Id: { type: String, required: true },
     bookTitle: { type: String, required: true },
     createdBy: { type: String, required: true },
     createdTime: { type: Date, default: Date.now },
