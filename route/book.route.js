@@ -1,14 +1,10 @@
 import express from "express";
-import { getBook,addBook,deleteBook } from "../controller/book.controller.js";
+import { getBook, addBook, deleteBook } from "../controller/book.controller.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-      res.send("Hello World");   
-});
-
-router.post("/addBook", addBook);
 router.get("/getBook", getBook);
-router.delete("/deleteBook",deleteBook);
+router.post("/addBook", addBook);
+router.delete("/deleteBook/:id", deleteBook); // Specify the parameter ':id' for DELETE request
 
 export default router;
