@@ -9,6 +9,6 @@ router.get("/", (req, res) => {
 
 router.post("/addBook", addBook);
 router.get("/getBook", getBook);
-router.get("/deleteBook",deleteBook);
+router.delete("/deleteBook",deleteBook);
 
 export default router;
