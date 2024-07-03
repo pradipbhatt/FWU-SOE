@@ -1,8 +1,6 @@
 import express from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-
 import adminRoute from "./route/admin.route.js";
 import userRoute from "./route/user.route.js";
 
@@ -14,23 +12,14 @@ app.use(express.json());
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
-const URI = process.env.MongoDBURI;
-
-// Connect to MongoDB
-try {
-    mongoose.connect(URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-    console.log("Connected to MongoDB");
-} catch (error) {
-    console.log("Error: ", error);
-}
 
 // Define routes
 app.use("/admin", adminRoute);
 app.use("/user", userRoute);
-
+app.get("/", (req, res) => {
+    res.send("Hello World");
+}
+);
 app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}, http://localhost:${PORT}`);
 });
