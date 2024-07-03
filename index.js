@@ -4,6 +4,7 @@ import cors from "cors";
 import adminRoute from "./route/admin.route.js";
 import userRoute from "./route/user.route.js";
 import bookRoute from "./route/book.route.js";
+import connectDB from "./lib/db.js";
 const app = express();
 
 app.use(cors());
@@ -22,6 +23,9 @@ app.get("/", (req, res) => {
     res.send("Hello World");
 }
 );
+
+connectDB();
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}, http://localhost:${PORT}`);
 });
