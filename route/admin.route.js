@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/users", isAdmin, getUsers);
 
 // Route to delete a user (admin only)
-router.delete("/:id", isAdmin, deleteUser);
+router.delete("/users/:id", isAdmin, deleteUser);
 
 // Route to update a user (admin only)
 router.put("/updateUser", isAdmin, updateUser);

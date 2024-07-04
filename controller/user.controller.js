@@ -2,12 +2,13 @@ import User from "../model/user.model.js";
 import bcryptjs from "bcryptjs";
 
 // Signup controller to create a new user (admin only)
+// Signup controller to create a new user (admin only)
 export const signup = async (req, res) => {
     try {
         const { fullname, email, password, registrationNumber, isAdmin } = req.body;
 
         // Check if the requester is admin
-        if (!req.body.requester || !req.body.requester.isAdmin) {
+        if (!req.headers['is-admin'] === 'true') {
             return res.status(403).json({ message: "Forbidden: Admins only" });
         }
 
@@ -43,7 +44,6 @@ export const signup = async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 };
-
 // Login controller to authenticate a user
 export const login = async (req, res) => {
     try {
@@ -92,7 +92,7 @@ export const deleteUser = async (req, res) => {
         const userId = req.params.id;
 
         // Check if the requester is admin
-        if (!req.body.requester || !req.body.requester.isAdmin) {
+        if (!req.headers['is-admin'] === 'true') {
             return res.status(403).json({ message: "Forbidden: Admins only" });
         }
 
@@ -116,7 +116,7 @@ export const updateUser = async (req, res) => {
         const { userId, fullname, email, registrationNumber, isAdmin } = req.body;
 
         // Check if the requester is admin
-        if (!req.body.requester || !req.body.requester.isAdmin) {
+        if (!req.headers['is-admin'] === 'true') {
             return res.status(403).json({ message: "Forbidden: Admins only" });
         }
 

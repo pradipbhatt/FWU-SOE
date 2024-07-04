@@ -1,9 +1,10 @@
 // Middleware to check if the user is an admin
 export const isAdmin = (req, res, next) => {
-    const user = req.body.requester; // Assuming requester info is provided in the body
-    if (user && user.isAdmin) {
-        next();
+    const isAdmin = req.headers['is-admin'] === 'true';
+    if (isAdmin) {
+      next();
     } else {
-        res.status(403).json({ message: "Forbidden: Admins only" });
+      res.status(403).json({ message: "Forbidden: Admins only" });
     }
-};
+  };
+  
