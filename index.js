@@ -5,6 +5,7 @@ import adminRoute from "./route/admin.route.js";
 import userRoute from "./route/user.route.js";
 import bookRoute from "./route/book.route.js";
 import connectDB from "./lib/db.js";
+
 const app = express();
 
 app.use(cors());
@@ -21,8 +22,7 @@ app.use("/book", bookRoute);
 
 app.get("/", (req, res) => {
     res.send("Hello World");
-}
-);
+});
 
 connectDB();
 
