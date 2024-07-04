@@ -24,7 +24,7 @@ export const signup = async (req, res) => {
             email,
             password: hashPassword,
             registrationNumber,
-            isAdmin: isAdmin || false, // Assign isAdmin if provided, otherwise default to false
+            isAdmin: false, // Assign isAdmin if provided, otherwise default to false
         });
 
         await createdUser.save();
