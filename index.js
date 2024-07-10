@@ -5,6 +5,7 @@ import adminRoute from "./route/admin.route.js";
 import userRoute from "./route/user.route.js";
 import bookRoute from "./route/book.route.js";
 import connectDB from "./lib/db.js";
+import quizRoutes from './route/quiz.route.js';
 
 const app = express();
 
@@ -19,6 +20,8 @@ const PORT = process.env.PORT || 4000;
 app.use("/admin", adminRoute);
 app.use("/user", userRoute);
 app.use("/book", bookRoute);
+app.use('/api', quizRoutes);
+
 
 app.get("/", (req, res) => {
     res.send("Hello World");
