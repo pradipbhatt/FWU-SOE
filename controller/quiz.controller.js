@@ -12,6 +12,17 @@ const createQuiz = async (req, res) => {
   }
 };
 
+// Bulk create quizzes
+const createQuizzes = async (req, res) => {
+  try {
+    const quizzes = await Quiz.insertMany(req.body); // Assumes req.body is an array of quizzes
+    res.status(201).json(quizzes);
+  } catch (error) {
+    console.error('Error: ', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
 // Get all quizzes or by year
 const getQuizzes = async (req, res) => {
   try {
@@ -72,4 +83,5 @@ const deleteQuiz = async (req, res) => {
   }
 };
 
-export { createQuiz, getQuizzes, getQuizById, updateQuiz, deleteQuiz };
+// Export all controller functions
+export { createQuiz, createQuizzes, getQuizzes, getQuizById, updateQuiz, deleteQuiz };

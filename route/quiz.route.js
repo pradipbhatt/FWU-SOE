@@ -1,11 +1,13 @@
 import express from 'express';
-import { createQuiz, getQuizzes, getQuizById, updateQuiz, deleteQuiz } from '../controller/quiz.controller.js';
-
+import { createQuiz, createQuizzes, getQuizzes, getQuizById, updateQuiz, deleteQuiz } from '../controller/quiz.controller.js';
 
 const router = express.Router();
 
 // Create a new quiz
 router.post('/quizzes', createQuiz);
+
+// Bulk create quizzes
+router.post('/quizzes/bulk', createQuizzes);
 
 // Get all quizzes
 router.get('/quizzes', getQuizzes);
