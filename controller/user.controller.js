@@ -4,7 +4,7 @@ import bcryptjs from "bcryptjs";
 // Signup controller to create a new user (admin only)
 export const signup = async (req, res) => {
     try {
-        const { fullname, email, password, registrationNumber, isAdmin, userImage } = req.body;
+        const { fullname, email, password, registrationNumber, userImage } = req.body;
 
         if (req.headers['is-admin'] !== 'true') {
             return res.status(403).json({ message: "Forbidden: Admins only" });
@@ -26,7 +26,7 @@ export const signup = async (req, res) => {
             email,
             password: hashPassword,
             registrationNumber,
-            isAdmin: false,
+            isAdmin: false, // Ensure isAdmin is always set to false
             userImage: userImage || '',
         });
 
