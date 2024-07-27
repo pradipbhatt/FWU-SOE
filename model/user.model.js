@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
     },
     userImage: {
         type: String, // URL of the user's image
-        default: '', // Default value if no image is uploaded
+        default: 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png' 
     }
 });
 
