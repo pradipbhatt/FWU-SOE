@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+        match: [/\S+@fwu\.edu\.np$/, 'Email must end with @fwu.edu.np'], // Validate email format
     },
     password: {
         type: String,
@@ -24,6 +25,10 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    userImage: {
+        type: String, // URL of the user's image
+        default: '', // Default value if no image is uploaded
+    }
 });
 
 // Create the User model
