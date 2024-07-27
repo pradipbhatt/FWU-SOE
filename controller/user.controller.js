@@ -2,13 +2,10 @@ import User from "../model/user.model.js";
 import bcryptjs from "bcryptjs";
 
 // Signup controller to create a new user (admin only)
+// Signup controller to create a new user
 export const signup = async (req, res) => {
     try {
-        const { fullname, email, password, registrationNumber, isAdmin, userImage } = req.body;
-
-        if (req.headers['is-admin'] !== 'true') {
-            return res.status(403).json({ message: "Forbidden: Admins only" });
-        }
+        const { fullname, email, password, registrationNumber, userImage } = req.body;
 
         const emailRegex = /\S+@fwu\.edu\.np$/;
         if (!emailRegex.test(email)) {
@@ -26,7 +23,7 @@ export const signup = async (req, res) => {
             email,
             password: hashPassword,
             registrationNumber,
-            isAdmin: isAdmin || false,
+            isAdmin: false, // Set isAdmin to false
             userImage: userImage || '',
         });
 
@@ -48,7 +45,6 @@ export const signup = async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 };
-
 // Login controller to authenticate a user
 export const login = async (req, res) => {
     try {
