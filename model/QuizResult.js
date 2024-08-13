@@ -8,7 +8,7 @@ const quizResultSchema = new mongoose.Schema({
     engineeringField: {
         type: String,
         required: true,
-        enum: ['Computer', 'Civil']
+        enum: ['Computer', 'Civil', 'Architecture']
     },
     review: {
         type: String,
@@ -29,7 +29,7 @@ const quizResultSchema = new mongoose.Schema({
         required: true
     }
 }, {
-    timestamps: true
+    timestamps: true // This will automatically add createdAt and updatedAt fields
 });
 
 const QuizResult = mongoose.model('QuizResult', quizResultSchema);
