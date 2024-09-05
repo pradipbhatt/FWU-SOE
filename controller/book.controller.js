@@ -1,9 +1,16 @@
 import Book from "../model/book.model.js";
 
-// Get all books
+// Get all books with optional faculty filter
 const getBook = async (req, res) => {
   try {
-    const books = await Book.find();
+    const { faculty } = req.query; // Extract faculty from query parameters
+    const filter = {};
+
+    if (faculty) {
+      filter.faculty = faculty; // Add faculty filter if provided
+    }
+
+    const books = await Book.find(filter);
     res.status(200).json(books);
   } catch (error) {
     console.error("Error: ", error);
@@ -11,11 +18,18 @@ const getBook = async (req, res) => {
   }
 };
 
-// Get a book by title
+// Get a book by title with optional faculty filter
 const getBookByTitle = async (req, res) => {
   try {
     const { title } = req.params;
-    const book = await Book.findOne({ bookTitle: title });
+    const { faculty } = req.query; // Extract faculty from query parameters
+    const filter = { bookTitle: title };
+
+    if (faculty) {
+      filter.faculty = faculty; // Add faculty filter if provided
+    }
+
+    const book = await Book.findOne(filter);
 
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
@@ -73,6 +87,4 @@ const deleteBook = async (req, res) => {
   }
 };
 
-
-
-export { getBook, getBookByTitle, addBook,updateBook, deleteBook };
+export { getBook, getBookByTitle, addBook, updateBook, deleteBook };

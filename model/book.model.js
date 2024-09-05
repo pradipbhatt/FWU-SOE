@@ -6,6 +6,11 @@ const bookSchema = mongoose.Schema({
   createdTime: { type: Date, default: Date.now },
   image: { type: String, required: true },
   pdfLink: { type: String, required: true },
+  faculty: { 
+    type: String, 
+    required: true,
+    enum: ['Civil', 'Computer'] // Restricting the faculty field to only these values
+  },
   semester: { type: String, required: true }
 });
 
